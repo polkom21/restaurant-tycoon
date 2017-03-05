@@ -45,7 +45,7 @@ void Game::GameLoop()
 		if (PeekState() == nullptr)
 			continue;
 		PeekState()->HandleInput();
-		PeekState()->Update();
+		PeekState()->Update(dt);
 		this->window.clear(sf::Color::Black);
 		PeekState()->Draw(dt);
 		this->window.display();
