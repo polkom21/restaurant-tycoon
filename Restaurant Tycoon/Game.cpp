@@ -54,7 +54,7 @@ void Game::GameLoop()
 
 Game::Game()
 {
-	this->window.create(sf::VideoMode(1280, 768), "Restaurant Tycoon");
+	this->window.create(sf::VideoMode(1280, 720), "Restaurant Tycoon");
 	this->window.setFramerateLimit(60);
 }
 

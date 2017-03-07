@@ -1,9 +1,10 @@
 #include "Game.h"
+#include "PlayGameState.h"
 
 int main(int args, char * argv[]) {
 	Game * game = new Game();
 
-	game->PushState(new GameState(game));
+	game->PushState(new PlayGameState(game));
 
 	game->GameLoop();
 
