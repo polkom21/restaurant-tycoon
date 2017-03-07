@@ -4,6 +4,8 @@
 #include <stack>
 #include "GameState.h"
 
+class GameState;
+
 class Game
 {
 public:
