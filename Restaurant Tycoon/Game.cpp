@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 void Game::PushState(GameState * state)
 {
 	this->states.push(state);

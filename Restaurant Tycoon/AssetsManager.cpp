@@ -1,9 +1,26 @@
 #include "AssetsManager.h"
 
+void AssetsManager::CreateObject(std::string name, ObjectType type, sf::Texture & texture)
+{
+	Object tmp(type, texture);
+	tmp.name = name;
 
+	this->objects.insert(std::pair<std::string, Object>(name, tmp));
+}
+
+Object & AssetsManager::GetObject(std::string name)
+{
+	if (this->objects.find(name) == this->objects.end()) {
+		return Object(ObjectType::ERROR, sf::Texture());
+	}
+	return this->objects.at(name);
+}
 
 AssetsManager::AssetsManager()
 {
+	LoadTexture("floor", "Data/floor.png");
+
+	CreateObject("floor", ObjectType::FLOOR, GetTexture("floor"));
 }
 
 
