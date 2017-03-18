@@ -1,0 +1,33 @@
+
+all.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+wall_left_top
+  rotate: false
+  xy: 1, 131
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+wall_right_top
+  rotate: false
+  xy: 131, 131
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+wall_top_left_right
+  rotate: false
+  xy: 261, 131
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+floor
+  rotate: false
+  xy: 1, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
