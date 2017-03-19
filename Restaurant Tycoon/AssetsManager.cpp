@@ -101,9 +101,6 @@ sf::IntRect AssetsManager::GetRect(const std::string name)
 
 AssetsManager::AssetsManager()
 {
-	LoadTextureAtlas("Data/all.atlas");
-
-	CreateObject("floor", ObjectType::FLOOR, "all.floor");
 }
 
 

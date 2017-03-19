@@ -37,6 +37,9 @@ void PlayGameState::HandleInput()
 PlayGameState::PlayGameState(Game * game)
 {
 	this->game = game;
+
+	this->game->assetsManager.LoadTextureAtlas("Data/all.atlas");
+	this->game->assetsManager.CreateObject("floor", ObjectType::FLOOR, "all.floor");
 	
 	this->test = sf::RectangleShape();
 	this->test.setFillColor(sf::Color::Magenta);
