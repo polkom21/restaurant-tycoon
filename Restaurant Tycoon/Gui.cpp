@@ -13,7 +13,7 @@ void Gui::SetSize(const sf::Vector2f size)
 	this->size.height = size.y;
 }
 
-sf::Vector2f Gui::GetPosition()
+sf::Vector2f Gui::GetPosition() const
 {
 	return sf::Vector2f(this->size.left, this->size.top);
 }
@@ -47,7 +47,7 @@ GuiElement * Gui::GetElement(const std::string name) const
 	return elements.at(name);
 }
 
-void Gui::Draw(sf::RenderWindow & window)
+void Gui::Draw(sf::RenderWindow & window) const
 {
 	for (auto & kv : elements) {
 		GetElement(kv.first)->Draw(window);

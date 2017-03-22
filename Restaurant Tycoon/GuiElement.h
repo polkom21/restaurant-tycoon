@@ -11,7 +11,7 @@ public:
 	sf::Vector2f position;
 	sf::Vector2f parentPosition;
 
-	virtual void Draw(sf::RenderWindow & window) = 0;
+	virtual void Draw(sf::RenderWindow & window) const = 0;
 	virtual void Update(const float dt) = 0;
 };
 
