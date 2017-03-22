@@ -12,7 +12,7 @@ void AssetsManager::CreateObject(const std::string name, ObjectType type, const 
 
 	this->objects.insert(std::pair<std::string, Object>(name, tmp));
 
-	printf("Successfull adding object %s", name.c_str());
+	printf("Successfull adding object %s\n", name.c_str());
 }
 
 Object & AssetsManager::GetObject(const std::string name)
