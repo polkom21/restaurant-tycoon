@@ -29,6 +29,11 @@ GuiElement * Gui::CreateElement(const std::string name, GuiElementType type)
 			GetElement(name)->parentPosition = this->GetPosition();
 			return GetElement(name);
 			break;
+		case GuiElementType::BUTTON:
+			elements.insert(std::make_pair(name, new GuiButton()));
+			GetElement(name)->parentPosition = this->GetPosition();
+			return GetElement(name);
+			break;
 		default:
 			return nullptr;
 			break;

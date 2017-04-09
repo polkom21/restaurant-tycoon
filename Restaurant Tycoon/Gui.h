@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "AssetsManager.h"
 #include "GuiElement.h"
+#include "GuiLabel.h"
+#include "GuiButton.h"
 
 class Gui
 {
