@@ -13,6 +13,7 @@ private:
 	sf::RectangleShape test;
 	Map * map;
 	Gui * gui;
+	GuiButton * button;
 public:
 	virtual void Draw(const float dt);
 	virtual void Update(const float dt);
