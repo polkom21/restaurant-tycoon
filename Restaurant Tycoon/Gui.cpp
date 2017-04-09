@@ -1,5 +1,4 @@
 #include "Gui.h"
-#include "GuiLabel.h"
 
 void Gui::SetPosition(const sf::Vector2f position)
 {
@@ -66,8 +65,11 @@ void Gui::Update(const float dt)
 	}
 }
 
-void Gui::HandleInput(sf::Event event)
+void Gui::HandleInput(sf::Event & event)
 {
+	for (auto &kv : elements) {
+		kv.second->HandleInput(event);
+	}
 }
 
 Gui::Gui(AssetsManager & assets)

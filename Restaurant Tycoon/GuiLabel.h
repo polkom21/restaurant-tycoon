@@ -10,6 +10,7 @@ public:
 	~GuiLabel();
 	void Draw(sf::RenderWindow & window) const;
 	void Update(const float dt);
+	void HandleInput(sf::Event & event);
 	void SetText(std::string text);
 	void SetFont(sf::Font & font);
 };

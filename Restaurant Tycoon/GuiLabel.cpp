@@ -22,11 +22,13 @@ void GuiLabel::Update(const float dt)
 	this->text.setCharacterSize(this->characterSize);
 }
 
+void GuiLabel::HandleInput(sf::Event & event)
+{
+}
+
 void GuiLabel::SetText(std::string text)
 {
 	this->text.setString(text);
-
-	printf("Change string to: %s\n", text.c_str());
 }
 
 void GuiLabel::SetFont(sf::Font & font)
