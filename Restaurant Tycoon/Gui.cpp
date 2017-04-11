@@ -1,5 +1,4 @@
 #include "Gui.h"
-#include "GuiLabel.h"
 
 void Gui::SetPosition(const sf::Vector2f position)
 {
@@ -26,6 +25,11 @@ GuiElement * Gui::CreateElement(const std::string name, GuiElementType type)
 		{
 		case GuiElementType::LABEL:
 			elements.insert(std::make_pair(name, new GuiLabel()));
+			GetElement(name)->parentPosition = this->GetPosition();
+			return GetElement(name);
+			break;
+		case GuiElementType::BUTTON:
+			elements.insert(std::make_pair(name, new GuiButton()));
 			GetElement(name)->parentPosition = this->GetPosition();
 			return GetElement(name);
 			break;
@@ -61,8 +65,11 @@ void Gui::Update(const float dt)
 	}
 }
 
-void Gui::HandleInput(sf::Event event)
+void Gui::HandleInput(sf::Event & event)
 {
+	for (auto &kv : elements) {
+		kv.second->HandleInput(event);
+	}
 }
 
 Gui::Gui(AssetsManager & assets)

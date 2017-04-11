@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "AssetsManager.h"
 #include "GuiElement.h"
+#include "GuiLabel.h"
+#include "GuiButton.h"
 
 class Gui
 {
@@ -24,6 +26,6 @@ public:
 
 	void Draw(sf::RenderWindow & window) const;
 	void Update(const float dt);
-	void HandleInput(sf::Event event);
+	void HandleInput(sf::Event & event);
 };
 

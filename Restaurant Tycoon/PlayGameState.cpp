@@ -12,6 +12,10 @@ void PlayGameState::Draw(const float dt)
 void PlayGameState::Update(const float dt)
 {
 	this->gui->Update(dt);
+
+	if (button->IsReleased()) {
+		this->game->window.close();
+	}
 }
 
 void PlayGameState::HandleInput()
@@ -34,6 +38,8 @@ void PlayGameState::HandleInput()
 		default:
 			break;
 		}
+		
+		this->gui->HandleInput(event);
 	}
 }
 
@@ -41,9 +47,10 @@ PlayGameState::PlayGameState(Game * game)
 {
 	this->game = game;
 
-	this->game->assetsManager.LoadFont("arial", "Data/arial.ttf");
-	this->game->assetsManager.LoadTextureAtlas("Data/all.atlas");
-	this->game->assetsManager.CreateObject("floor", ObjectType::FLOOR, "all.floor");
+	this->game->assetsManager.LoadTextureAtlas("Data/ui.atlas");
+	this->game->assetsManager.LoadFont("default", "Data/kenvector_future.ttf");
+	this->game->assetsManager.LoadTextureAtlas("Data/All.atlas");
+	this->game->assetsManager.CreateObject("floor", ObjectType::FLOOR, "All.floor");
 	
 	this->test = sf::RectangleShape();
 	this->test.setFillColor(sf::Color::Magenta);
@@ -56,8 +63,15 @@ PlayGameState::PlayGameState(Game * game)
 
 	GuiLabel * label = (GuiLabel*)this->gui->CreateElement("testLabel", GuiElementType::LABEL);
 	label->SetText("Label");
-	label->SetFont(this->game->assetsManager.GetFont("arial"));
+	label->SetFont(this->game->assetsManager.GetFont("default"));
 	label->SetTextColor(sf::Color::Green);
+
+	button = (GuiButton*)this->gui->CreateElement("testButton", GuiElementType::BUTTON);
+	button->SetText("Quit game");
+	button->SetFont(this->game->assetsManager.GetFont("default"));
+	button->SetTextColor(sf::Color::Black);
+	button->SetImages(this->game->assetsManager, "ui.grey_button01", "ui.grey_button02");
+	button->position = sf::Vector2f(100, 100);
 }
 
 
