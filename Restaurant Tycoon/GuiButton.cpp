@@ -43,18 +43,18 @@ void GuiButton::Update(const float dt)
 void GuiButton::HandleInput(sf::Event & event)
 {
 	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-		if (this->background.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+		if (this->background.getGlobalBounds().contains(sf::Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y)))
 			this->clicked = true;
 	}
 	else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-		if (this->background.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)) 
+		if (this->background.getGlobalBounds().contains(sf::Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y)) 
 			&& this->clicked) {
 			this->released = true;
 			this->clicked = false;
 		}
 	}
 	else if (event.type == sf::Event::MouseMoved && this->clicked) {
-		if (!this->background.getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y)))
+		if (!this->background.getGlobalBounds().contains(sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y)))
 			this->clicked = false;
 	}
 }
