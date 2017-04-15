@@ -72,6 +72,11 @@ PlayGameState::PlayGameState(Game * game)
 	button->SetTextColor(sf::Color::Black);
 	button->SetImages(this->game->assetsManager, "ui.grey_button01", "ui.grey_button02");
 	button->position = sf::Vector2f(100, 100);
+
+	GuiListLayout * list = (GuiListLayout*)this->gui->CreateElement("testList", GuiElementType::LIST_LAYOUT);
+	list->position = sf::Vector2f(350, 200);
+	list->size = sf::Vector2f(250, 300);
+	list->SetImages(this->game->assetsManager, "ui.grey_panel");
 }
 
 
