@@ -33,6 +33,11 @@ GuiElement * Gui::CreateElement(const std::string name, GuiElementType type)
 			GetElement(name)->parentPosition = this->GetPosition();
 			return GetElement(name);
 			break;
+		case GuiElementType::LIST_LAYOUT:
+			elements.insert(std::make_pair(name, new GuiListLayout()));
+			GetElement(name)->parentPosition = this->GetPosition();
+			return GetElement(name);
+			break;
 		default:
 			return nullptr;
 			break;
@@ -53,7 +58,7 @@ GuiElement * Gui::GetElement(const std::string name) const
 
 void Gui::Draw(sf::RenderWindow & window) const
 {
-	for (auto & kv : elements) {
+	for (auto &kv : elements) {
 		GetElement(kv.first)->Draw(window);
 	}
 }

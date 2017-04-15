@@ -3,7 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include "AssetsManager.h"
 
-enum class GuiElementType {LABEL, BUTTON};
+enum class GuiElementType {LABEL, BUTTON, LIST_LAYOUT};
 
 class GuiElement
 {
@@ -16,6 +16,7 @@ public:
 	GuiElementType type;
 	sf::Vector2f position;
 	sf::Vector2f parentPosition;
+	sf::Vector2f size;
 
 	virtual void Draw(sf::RenderWindow & window) const = 0;
 	virtual void Update(const float dt) = 0;

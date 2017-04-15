@@ -6,6 +6,7 @@
 #include "GuiElement.h"
 #include "GuiLabel.h"
 #include "GuiButton.h"
+#include "GuiListLayout.h"
 
 class Gui
 {
