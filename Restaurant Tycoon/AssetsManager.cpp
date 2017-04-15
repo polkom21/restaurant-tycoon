@@ -70,11 +70,19 @@ void AssetsManager::LoadTextureAtlas(const std::string filename)
 					printf("Param: %s\tValue: %s\n", param.c_str(), value.c_str());
 					rect.width = std::stof(value.substr(0, pos));
 					rect.height = std::stof(value.substr(pos + 1));
+				}
+				else if (param == "index") {
+					printf("rect at index: %s\n", value.c_str());
+					int index = std::stoi(value);
 
 					std::string fileId = loadedFileName + "." + textureName;
-					printf("Add rect of texture name %s to map\n", fileId.c_str());
-					rects.insert(std::pair<std::string, sf::IntRect>(loadedFileName + "." + textureName, rect));
-					printf("add rect %f %f %f %f\n", rect.top, rect.left, rect.width, rect.height);
+
+					if (index > 0)
+						fileId += "_" + std::to_string(index);
+
+					printf("Add rect %s of texture name %s to array\n", fileId.c_str(), textureName.c_str());
+					rects.insert(std::pair<std::string, sf::IntRect>(fileId, rect));
+					printf("add rect %f %f %f %f\n\n", rect.top, rect.left, rect.width, rect.height);
 				}
 
 				continue;
