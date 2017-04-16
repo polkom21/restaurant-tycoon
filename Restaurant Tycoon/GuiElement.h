@@ -16,6 +16,7 @@ public:
 	GuiElementType type;
 	sf::Vector2f position;
 	sf::Vector2f parentPosition;
+	sf::Vector2f padding;
 	sf::Vector2f size;
 
 	virtual void Draw(sf::RenderWindow & window) const = 0;

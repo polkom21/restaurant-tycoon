@@ -2,6 +2,8 @@
 
 GuiListLayout::GuiListLayout()
 {
+	this->title.setString("Panel");
+	this->title.setCharacterSize(this->characterSize);
 }
 
 
@@ -13,6 +15,8 @@ void GuiListLayout::Draw(sf::RenderWindow & window) const
 {
 	window.draw(this->backgroundSprite);
 	
+	window.draw(this->title);
+
 	for (auto &kv : childs) {
 		GetElement(kv.first)->Draw(window);
 	}
@@ -30,6 +34,9 @@ void GuiListLayout::Update(const float dt)
 	backgroundSprite.setScale(1.f, 1.f);
 	backgroundSprite.setTexture(this->texture.getTexture(), true);
 	backgroundSprite.setPosition(this->position);
+
+	this->title.setPosition(this->position + this->padding);
+	this->title.setFillColor(this->textColor);
 }
 
 void GuiListLayout::HandleInput(sf::Event & event)
@@ -123,4 +130,13 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 	}
 
 	this->texture.display();
+
+	this->title.setFont(assets.GetFont("default"));
+
+	this->padding = sf::Vector2f(rects[0].width, rects[0].height);
+}
+
+void GuiListLayout::SetTitle(const std::string title)
+{
+	this->title.setString(title);
 }

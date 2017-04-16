@@ -76,7 +76,9 @@ PlayGameState::PlayGameState(Game * game)
 	GuiListLayout * list = (GuiListLayout*)this->gui->CreateElement("testList", GuiElementType::LIST_LAYOUT);
 	list->position = sf::Vector2f(350, 200);
 	list->size = sf::Vector2f(250, 300);
+	list->SetTextColor(sf::Color::Black);
 	list->SetImages(this->game->assetsManager, "ui.grey_panel");
+	list->SetTitle("List of elements");
 }
 
 
