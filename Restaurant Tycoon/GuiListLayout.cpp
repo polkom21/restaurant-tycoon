@@ -45,8 +45,8 @@ void GuiListLayout::HandleInput(sf::Event & event)
 		GetElement(kv.first)->HandleInput(event);
 	}
 
-	sf::Vector2f mousePos = sf::Vector2f((int)event.mouseButton.x, (int)event.mouseButton.y);
-	sf::Vector2f mouseMove = sf::Vector2f((int)event.mouseMove.x, (int)event.mouseMove.y);
+	sf::Vector2f mousePos = sf::Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y);
+	sf::Vector2f mouseMove = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
 	titleHandler.left = this->position.x;
 	titleHandler.top = this->position.y;
 
@@ -104,7 +104,7 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 	std::string tName = textureName.substr(0, pos);
 	backgroundSprite.setTexture(assets.GetTexture(tName));
 
-	this->texture.create(this->size.x, this->size.y);
+	this->texture.create((unsigned int)this->size.x, (unsigned int)this->size.y);
 	this->texture.clear(sf::Color::Transparent);
 
 	for (int i = 0; i < 9; i++)
@@ -119,29 +119,29 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 			backgroundSprite.setPosition(0, 0);
 			break;
 		case 1:
-			backgroundSprite.setPosition(rects[0].width, 0);
+			backgroundSprite.setPosition((float)rects[0].width, 0);
 			backgroundSprite.setScale((this->size.x - 2 * rects[0].width) / rects[i].width, 1.f);
 			break;
 		case 2:
 			backgroundSprite.setPosition(this->size.x - rects[i].width, 0);
 			break;
 		case 3:
-			backgroundSprite.setPosition(0, rects[0].height);
+			backgroundSprite.setPosition(0, (float)rects[0].height);
 			backgroundSprite.setScale(1.f, (this->size.y - 2 * rects[0].height) / rects[i].height);
 			break;
 		case 4:
-			backgroundSprite.setPosition(rects[0].width, rects[0].height);
+			backgroundSprite.setPosition((float)rects[0].width, (float)rects[0].height);
 			backgroundSprite.setScale((this->size.x - 2 * rects[0].width) / rects[i].width, (this->size.y - 2 * rects[0].height) / rects[i].height);
 			break;
 		case 5:
-			backgroundSprite.setPosition(this->size.x - rects[i].width, rects[2].height);
+			backgroundSprite.setPosition(this->size.x - rects[i].width, (float)rects[2].height);
 			backgroundSprite.setScale(1.f, (this->size.y - 2 * rects[0].height) / rects[i].height);
 			break;
 		case 6:
 			backgroundSprite.setPosition(0, this->size.y - rects[i].height);
 			break;
 		case 7:
-			backgroundSprite.setPosition(rects[6].width, this->size.y - rects[i].height);
+			backgroundSprite.setPosition((float)rects[6].width, this->size.y - rects[i].height);
 			backgroundSprite.setScale((this->size.x - 2 * rects[0].width) / rects[i].width, 1.f);
 			break;
 		case 8:
@@ -156,9 +156,9 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 
 	this->title.setFont(assets.GetFont("default"));
 
-	this->padding = sf::Vector2f(rects[0].width, rects[0].height);
+	this->padding = sf::Vector2f((float)rects[0].width, (float)rects[0].height);
 
-	this->titleHandler = sf::FloatRect(0, 0, this->size.x, rects[0].height);
+	this->titleHandler = sf::FloatRect(0, 0, this->size.x, (float)rects[0].height);
 }
 
 void GuiListLayout::SetTitle(const std::string title)
