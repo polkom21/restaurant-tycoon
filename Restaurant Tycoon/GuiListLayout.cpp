@@ -35,7 +35,8 @@ void GuiListLayout::Update(const float dt)
 	backgroundSprite.setTexture(this->texture.getTexture(), true);
 	backgroundSprite.setPosition(this->position);
 
-	this->title.setPosition(this->position + this->padding);
+	this->title.setPosition(this->position);
+	this->title.move(padding.x, (padding.y - this->title.getCharacterSize()) / 2);
 	this->title.setFillColor(this->textColor);
 }
 
@@ -159,6 +160,7 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 	this->padding = sf::Vector2f((float)rects[0].width, (float)rects[0].height);
 
 	this->titleHandler = sf::FloatRect(0, 0, this->size.x, (float)rects[0].height);
+	this->title.setCharacterSize(rects[0].height * .75);
 }
 
 void GuiListLayout::SetTitle(const std::string title)
