@@ -12,6 +12,7 @@ private:
 	sf::IntRect rects[9];
 	sf::RenderTexture texture;
 	sf::Sprite backgroundSprite;
+	sf::Text title;
 public:
 	GuiListLayout();
 	~GuiListLayout();
@@ -23,5 +24,6 @@ public:
 	GuiElement * GetElement(const std::string name) const;
 
 	void SetImages(AssetsManager & assets, const std::string textureName);
+	void SetTitle(const std::string title);
 };
 
