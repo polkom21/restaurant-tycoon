@@ -44,6 +44,29 @@ void GuiListLayout::HandleInput(sf::Event & event)
 	for (auto &kv : childs) {
 		GetElement(kv.first)->HandleInput(event);
 	}
+
+	sf::Vector2f mousePos = sf::Vector2f((int)event.mouseButton.x, (int)event.mouseButton.y);
+	sf::Vector2f mouseMove = sf::Vector2f((int)event.mouseMove.x, (int)event.mouseMove.y);
+	titleHandler.left = this->position.x;
+	titleHandler.top = this->position.y;
+
+	if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
+		if (titleHandler.contains(mousePos)) {
+			this->clicked = true;
+			this->released = false;
+			clickDiffPos = this->position - mousePos;
+		}
+	}
+	else if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left) {
+		this->clicked = false;
+		if (titleHandler.contains(mousePos)) {
+			this->released = true;
+		}
+	}
+
+	if (event.type == sf::Event::MouseMoved && this->clicked) {
+		this->position = mouseMove + clickDiffPos;
+	}
 }
 
 GuiElement * GuiListLayout::AddElement(const std::string name, const GuiElementType type)
@@ -134,6 +157,8 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 	this->title.setFont(assets.GetFont("default"));
 
 	this->padding = sf::Vector2f(rects[0].width, rects[0].height);
+
+	this->titleHandler = sf::FloatRect(0, 0, this->size.x, rects[0].height);
 }
 
 void GuiListLayout::SetTitle(const std::string title)

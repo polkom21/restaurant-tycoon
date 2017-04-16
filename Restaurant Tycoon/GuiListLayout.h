@@ -13,6 +13,8 @@ private:
 	sf::RenderTexture texture;
 	sf::Sprite backgroundSprite;
 	sf::Text title;
+	sf::Vector2f clickDiffPos;
+	sf::FloatRect titleHandler;
 public:
 	GuiListLayout();
 	~GuiListLayout();
