@@ -18,6 +18,7 @@ public:
 	sf::Vector2f parentPosition;
 	sf::Vector2f padding;
 	sf::Vector2f size;
+	bool toRemove = false;
 
 	virtual void Draw(sf::RenderWindow & window) const = 0;
 	virtual void Update(const float dt) = 0;

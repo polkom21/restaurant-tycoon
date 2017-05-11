@@ -24,6 +24,7 @@ public:
 
 	GuiElement * CreateElement(const std::string name, GuiElementType type);
 	GuiElement * GetElement(const std::string name) const;
+	bool RemoveElement(const std::string name);
 
 	void Draw(sf::RenderWindow & window) const;
 	void Update(const float dt);

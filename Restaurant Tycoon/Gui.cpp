@@ -56,6 +56,17 @@ GuiElement * Gui::GetElement(const std::string name) const
 	return elements.at(name);
 }
 
+bool Gui::RemoveElement(const std::string name)
+{
+	if (elements.find(name) == elements.end()) {
+		printf("Not found gui element at name %s\n", name.c_str());
+		return false;
+	}
+
+	elements.erase(name);
+	return true;
+}
+
 void Gui::Draw(sf::RenderWindow & window) const
 {
 	for (auto &kv : elements) {
@@ -65,8 +76,13 @@ void Gui::Draw(sf::RenderWindow & window) const
 
 void Gui::Update(const float dt)
 {
-	for (auto &kv : elements) {
-		kv.second->Update(dt);
+	for (std::map<std::string, GuiElement*>::iterator it = elements.begin(); it != elements.end(); it++) {
+		if (it->second->toRemove == true) {
+			RemoveElement(it->first);
+			it = elements.begin();
+			continue;
+		}
+		it->second->Update(dt);
 	}
 }
 
