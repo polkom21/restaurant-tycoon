@@ -15,6 +15,7 @@ private:
 	sf::Text title;
 	sf::Vector2f clickDiffPos;
 	sf::FloatRect titleHandler;
+	GuiButton *exitButton;
 public:
 	GuiListLayout();
 	~GuiListLayout();

@@ -4,6 +4,7 @@ GuiListLayout::GuiListLayout()
 {
 	this->title.setString("Panel");
 	this->title.setCharacterSize(this->characterSize);
+	this->exitButton = new GuiButton();
 }
 
 
@@ -16,6 +17,8 @@ void GuiListLayout::Draw(sf::RenderWindow & window) const
 	window.draw(this->backgroundSprite);
 	
 	window.draw(this->title);
+
+	this->exitButton->Draw(window);
 
 	for (auto &kv : childs) {
 		GetElement(kv.first)->Draw(window);
@@ -38,6 +41,10 @@ void GuiListLayout::Update(const float dt)
 	this->title.setPosition(this->position);
 	this->title.move(padding.x, (padding.y - this->title.getCharacterSize()) / 2);
 	this->title.setFillColor(this->textColor);
+
+	this->exitButton->parentPosition = this->position;
+	this->exitButton->position = sf::Vector2f(this->size.x - this->exitButton->size.x - padding.x/2, (padding.y - this->title.getCharacterSize()) / 2);
+	this->exitButton->Update(dt);
 }
 
 void GuiListLayout::HandleInput(sf::Event & event)
@@ -45,6 +52,8 @@ void GuiListLayout::HandleInput(sf::Event & event)
 	for (auto &kv : childs) {
 		GetElement(kv.first)->HandleInput(event);
 	}
+
+	exitButton->HandleInput(event);
 
 	sf::Vector2f mousePos = sf::Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y);
 	sf::Vector2f mouseMove = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
@@ -68,6 +77,9 @@ void GuiListLayout::HandleInput(sf::Event & event)
 	if (event.type == sf::Event::MouseMoved && this->clicked) {
 		this->position = mouseMove + clickDiffPos;
 	}
+
+	if (this->exitButton->IsReleased())
+		this->toRemove = true;
 }
 
 GuiElement * GuiListLayout::AddElement(const std::string name, const GuiElementType type)
@@ -101,6 +113,8 @@ GuiElement * GuiListLayout::GetElement(const std::string name) const
 
 void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureName)
 {
+	this->exitButton->SetImages(assets, "ui.grey_crossGrey", "ui.grey_crossGrey");
+	
 	std::size_t pos = textureName.find('.');
 	std::string tName = textureName.substr(0, pos);
 	backgroundSprite.setTexture(assets.GetTexture(tName));
