@@ -16,6 +16,8 @@ private:
 	sf::Vector2f clickDiffPos;
 	sf::FloatRect titleHandler;
 	GuiButton *exitButton;
+	bool dragNDrop = false;
+	std::string selectedItem;
 public:
 	GuiListLayout();
 	~GuiListLayout();
@@ -25,6 +27,7 @@ public:
 
 	GuiElement * AddElement(const std::string name, const GuiElementType type);
 	GuiElement * GetElement(const std::string name) const;
+	std::string GetSelectedItem() const;
 
 	void SetImages(AssetsManager & assets, const std::string textureName);
 	void SetTitle(const std::string title);

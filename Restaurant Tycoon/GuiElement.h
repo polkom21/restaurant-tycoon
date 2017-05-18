@@ -39,5 +39,9 @@ public:
 		}
 		return false;
 	}
+
+	bool IsClicked() {
+		return this->clicked;
+	}
 };
 

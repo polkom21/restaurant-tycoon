@@ -50,7 +50,9 @@ void GuiListLayout::Update(const float dt)
 void GuiListLayout::HandleInput(sf::Event & event)
 {
 	for (auto &kv : childs) {
-		GetElement(kv.first)->HandleInput(event);
+		kv.second->HandleInput(event);
+		if (kv.second->IsClicked())
+			this->selectedItem = kv.first;
 	}
 
 	exitButton->HandleInput(event);
@@ -60,21 +62,28 @@ void GuiListLayout::HandleInput(sf::Event & event)
 	titleHandler.left = this->position.x;
 	titleHandler.top = this->position.y;
 
+	sf::FloatRect rectElement = sf::FloatRect(position.x, position.y, size.x, size.y);
+
 	if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
-		if (titleHandler.contains(mousePos)) {
+		if (rectElement.contains(mousePos)) {
 			this->clicked = true;
 			this->released = false;
 			clickDiffPos = this->position - mousePos;
 		}
+		if (titleHandler.contains(mousePos))
+			this->dragNDrop = true;
 	}
 	else if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left) {
 		this->clicked = false;
-		if (titleHandler.contains(mousePos)) {
+
+		if (rectElement.contains(mousePos))
 			this->released = true;
-		}
+
+		if (titleHandler.contains(mousePos))
+			this->dragNDrop = false;
 	}
 
-	if (event.type == sf::Event::MouseMoved && this->clicked) {
+	if (event.type == sf::Event::MouseMoved && this->dragNDrop) {
 		this->position = mouseMove + clickDiffPos;
 	}
 
@@ -109,6 +118,11 @@ GuiElement * GuiListLayout::GetElement(const std::string name) const
 	}
 	
 	return childs.at(name);
+}
+
+std::string GuiListLayout::GetSelectedItem() const
+{
+	return this->selectedItem;
 }
 
 void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureName)
