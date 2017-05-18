@@ -191,7 +191,7 @@ void GuiListLayout::SetImages(AssetsManager & assets, const std::string textureN
 	this->padding = sf::Vector2f((float)rects[0].width, (float)rects[0].height);
 
 	this->titleHandler = sf::FloatRect(0, 0, this->size.x, (float)rects[0].height);
-	this->title.setCharacterSize(rects[0].height * .5f);
+	this->title.setCharacterSize(rects[0].height * .55f);
 }
 
 void GuiListLayout::SetTitle(const std::string title)
