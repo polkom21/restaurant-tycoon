@@ -88,8 +88,11 @@ void Gui::Update(const float dt)
 
 void Gui::HandleInput(sf::Event & event)
 {
-	for (auto &kv : elements) {
-		kv.second->HandleInput(event);
+	for (std::map<std::string, GuiElement*>::reverse_iterator it = elements.rbegin(); it != elements.rend(); it++) {
+		it->second->HandleInput(event);
+		if (it->second->IsClicked()) {
+			break;
+		}
 	}
 }
 
