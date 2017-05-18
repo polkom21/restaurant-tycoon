@@ -8,7 +8,7 @@ enum class GuiElementType {LABEL, BUTTON, LIST_LAYOUT};
 class GuiElement
 {
 protected:
-	sf::Color textColor = sf::Color::White;
+	sf::Color textColor = sf::Color::Black;
 	unsigned int characterSize = 16;
 	bool clicked = false;
 	bool released = false;

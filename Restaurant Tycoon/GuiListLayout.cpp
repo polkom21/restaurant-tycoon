@@ -4,6 +4,8 @@ GuiListLayout::GuiListLayout()
 {
 	this->title.setString("Panel");
 	this->title.setCharacterSize(this->characterSize);
+	this->textColor = sf::Color::Black;
+
 	this->exitButton = new GuiButton();
 }
 
@@ -29,9 +31,10 @@ void GuiListLayout::Update(const float dt)
 {
 	float offsetY = 0;
 	for (auto &kv : childs) {
+		kv.second->parentPosition = this->position + this->padding;
 		kv.second->position.y = offsetY;
 		kv.second->Update(dt);
-		offsetY += kv.second->size.y;
+		offsetY += kv.second->size.y + 8;
 	}
 
 	backgroundSprite.setScale(1.f, 1.f);

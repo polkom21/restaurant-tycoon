@@ -2,6 +2,7 @@
 
 GuiButton::GuiButton()
 {
+	this->textColor = sf::Color::Black;
 }
 
 
@@ -20,9 +21,7 @@ void GuiButton::Draw(sf::RenderWindow & window) const
 
 void GuiButton::Update(const float dt)
 {
-	sf::Vector2f pos;
-	pos.x = this->position.x + this->parentPosition.x;
-	pos.y = this->position.y + this->parentPosition.y;
+	sf::Vector2f pos = this->position + this->parentPosition;
 
 	float onClickDiff = this->background.getLocalBounds().height - this->background_click.getLocalBounds().height;
 
@@ -38,6 +37,8 @@ void GuiButton::Update(const float dt)
 	pos.x += (this->background.getGlobalBounds().width - this->text.getGlobalBounds().width) / 2;
 	pos.y += (this->background.getGlobalBounds().height - this->text.getGlobalBounds().height) / 4;
 	this->text.setPosition(pos);
+	
+	this->size = sf::Vector2f(this->background.getLocalBounds().width, this->background.getLocalBounds().height);
 }
 
 void GuiButton::HandleInput(sf::Event & event)

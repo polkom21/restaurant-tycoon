@@ -3,6 +3,7 @@
 GuiLabel::GuiLabel()
 {
 	this->position = this->text.getPosition();
+	this->textColor = sf::Color::Black;
 }
 
 GuiLabel::~GuiLabel()
@@ -17,9 +18,10 @@ void GuiLabel::Draw(sf::RenderWindow & window) const
 
 void GuiLabel::Update(const float dt)
 {
-	this->text.setPosition(sf::Vector2f(this->position.x + parentPosition.x, this->position.y + parentPosition.y));
+	this->text.setPosition(this->position + this->parentPosition);
 	this->text.setFillColor(this->textColor);
 	this->text.setCharacterSize(this->characterSize);
+	this->size = sf::Vector2f(this->text.getLocalBounds().width, this->text.getLocalBounds().height);
 }
 
 void GuiLabel::HandleInput(sf::Event & event)

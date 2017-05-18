@@ -4,7 +4,7 @@ void PlayGameState::Draw(const float dt)
 {
 	this->game->window.draw(test);
 
-	this->map->Draw(this->game->window);
+	//this->map->Draw(this->game->window);
 
 	this->gui->Draw(this->game->window);
 }
@@ -51,11 +51,6 @@ PlayGameState::PlayGameState(Game * game)
 	this->game->assetsManager.LoadFont("default", "Data/kenvector_future.ttf");
 	this->game->assetsManager.LoadTextureAtlas("Data/All.atlas");
 	this->game->assetsManager.CreateObject("floor", ObjectType::FLOOR, "All.floor");
-	
-	this->test = sf::RectangleShape();
-	this->test.setFillColor(sf::Color::Magenta);
-	this->test.setSize(sf::Vector2f(100, 100));
-	this->test.setPosition(200, 200);
 
 	this->map = new Map(sf::Vector2i(5, 5), (sf::Vector2f)this->game->window.getSize(), this->game->assetsManager);
 
@@ -76,9 +71,16 @@ PlayGameState::PlayGameState(Game * game)
 	GuiListLayout * list = (GuiListLayout*)this->gui->CreateElement("testList", GuiElementType::LIST_LAYOUT);
 	list->position = sf::Vector2f(350, 200);
 	list->size = sf::Vector2f(250, 300);
-	list->SetTextColor(sf::Color::Black);
 	list->SetImages(this->game->assetsManager, "ui.grey_panel");
-	list->SetTitle("List of elements");
+	list->SetTitle("Debug window");
+
+	GuiLabel * fps = (GuiLabel*)list->AddElement("fps", GuiElementType::LABEL);
+	fps->SetFont(this->game->assetsManager.GetFont("default"));
+	fps->SetText("FPS: ");
+
+	GuiLabel * renderTime = (GuiLabel*)list->AddElement("renderTime", GuiElementType::LABEL);
+	renderTime->SetFont(this->game->assetsManager.GetFont("default"));
+	renderTime->SetText("Render time: ");
 }
 
 
