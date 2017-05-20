@@ -81,6 +81,13 @@ PlayGameState::PlayGameState(Game * game)
 	GuiLabel * renderTime = (GuiLabel*)list->AddElement("renderTime", GuiElementType::LABEL);
 	renderTime->SetFont(this->game->assetsManager.GetFont("default"));
 	renderTime->SetText("Render time: ");
+
+	for (int i = 0; i < 15; i++) {
+		GuiLabel * test = (GuiLabel*)list->AddElement("test" + std::to_string(i), GuiElementType::LABEL);
+		test->SetFont(this->game->assetsManager.GetFont("default"));
+		test->SetText("Test " + std::to_string(i));
+		test->SetTextColor(sf::Color::Magenta);
+	}
 }
 
 
