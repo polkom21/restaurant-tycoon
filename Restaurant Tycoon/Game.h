@@ -14,6 +14,10 @@ public:
 	sf::RenderWindow window;
 	AssetsManager assetsManager;
 
+	float renderTime;
+	float updateTime;
+	int FPS = 0;
+
 	void PushState(GameState * state);
 	void PopState();
 	void ChangeState(GameState * state);
