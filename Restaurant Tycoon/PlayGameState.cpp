@@ -4,7 +4,8 @@ void PlayGameState::Draw(const float dt)
 {
 	this->game->window.draw(test);
 
-	//this->map->Draw(this->game->window);
+	this->map->Draw(this->game->window);
+
 	this->gui.draw();
 }
 
