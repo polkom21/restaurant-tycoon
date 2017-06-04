@@ -12,6 +12,9 @@ private:
 	sf::RectangleShape test;
 	Map * map;
 	tgui::Gui gui;
+	tgui::Theme theme;
+	tgui::ChildWindow::Ptr debugWindow;
+	tgui::Label::Ptr fpsLabel, renderTimeLabel;
 public:
 	virtual void Draw(const float dt);
 	virtual void Update(const float dt);
